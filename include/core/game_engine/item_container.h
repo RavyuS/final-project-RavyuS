@@ -1,7 +1,7 @@
 //
 // Created by ravyu on 19/11/20.
 //
-
+#pragma once
 #ifndef FINAL_PROJECT_RAVYUS_ITEM_CONTAINER_H
 #define FINAL_PROJECT_RAVYUS_ITEM_CONTAINER_H
 
@@ -30,10 +30,10 @@ class ItemContainer{
    * Add item to this instance of Item Container. All items should ideally be loaded at the very start of the game.
    * @param item
    */
-  void AddRoom(objects::Item item);
+  void AddItem(objects::Item *item);
 
  private:
-  std::vector<objects::Item> items_;
+  std::vector<objects::Item*> items_;
 };
 }
 }

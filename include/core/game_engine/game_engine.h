@@ -14,7 +14,7 @@ namespace adventure{
 namespace engine{
 class GameEngine{
  public:
-  GameEngine(std::string json_fp);
+  GameEngine(std::string item_fp, std::string room_fp);
   ~GameEngine();
 
   void HandleAction(actions::Action action);

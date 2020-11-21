@@ -65,4 +65,5 @@ ci_make_app(
         CINDER_PATH ${CINDER_PATH}
         SOURCES apps/main.cc ${core_sources}
         INCLUDES include
+        LIBRARIES nlohmann_json::nlohmann_json
 )
