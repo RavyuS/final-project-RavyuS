@@ -11,8 +11,11 @@
 
 namespace adventure{
 namespace objects {
-struct Vault : public Item, public Unlockable{
-
+struct Vault : public Item{
+ public:
+  Vault(const string &id, const string &unlock_item): Item(id){
+    unlockable_ = true;
+  }
 
 };
 }

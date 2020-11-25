@@ -11,11 +11,12 @@
 namespace adventure{
 namespace objects{
 struct Unlockable{
-
+ public:
   bool locked = true;
-  std::string unlock_item;
-  virtual bool CanUnlock(std::vector<std::string> player_inventory);
-  virtual void Unlock();
+  std::string unlock_item_ID_;
+  std::string unlock_msg_;
+  bool CanUnlock(std::vector<std::string> player_inventory);
+  void Unlock();
 
 };
 }
