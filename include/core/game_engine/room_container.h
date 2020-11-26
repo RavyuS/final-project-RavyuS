@@ -31,7 +31,7 @@ class RoomContainer{
    * Add room to this instance of Room Container. All rooms should ideally be loaded at the very start of the game.
    * @param rm
    */
-  void AddRoom(objects::Room rm);
+  void AddRoom(objects::Room &rm);
 
  private:
   std::vector<objects::Room> rooms_;

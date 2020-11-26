@@ -3,15 +3,15 @@
 //
 #pragma once
 
-#include "room_container.h"
-#include "item_container.h"
-#include "core/game_objects/items/item.h"
+#include <core/game_objects/item.h>
+#include "core/game_objects/item.h"
 #include "core/game_objects/room.h"
+#include "item_container.h"
+#include "room_container.h"
 
 namespace adventure{
 namespace engine{
 class GameState{
-  GameState();
   ~GameState();
 
  public:
@@ -20,6 +20,7 @@ class GameState{
   RoomContainer rc_;
   ItemContainer ic_;
 
+  GameState();
 };
 }
 }

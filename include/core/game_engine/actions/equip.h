@@ -8,13 +8,13 @@
 #endif  // FINAL_PROJECT_RAVYUS_PICKUP_ITEM_H
 namespace adventure{
 namespace actions{
-class PickupItem : public Action{
+class Equip : public Action{
  public:
-  PickupItem(std::string item_ID);
-  void Execute(engine::GameState gs) override;
+  Equip(std::string& item_ID);
+  void Execute(engine::GameState& gs) override;
 
  private:
-  std::string item_ID;
+  std::string item_id_;
 };
 }
 }

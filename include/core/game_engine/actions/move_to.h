@@ -13,7 +13,7 @@ namespace actions{
 class MoveTo: public Action{
  public:
   MoveTo(std::string dest_ID);
-  void Execute(engine::GameState gs) override;
+  void Execute(engine::GameState& gs) override;
 
  private:
   std::string dest_ID_;

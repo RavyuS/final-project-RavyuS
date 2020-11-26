@@ -11,6 +11,7 @@ namespace adventure{
 
 namespace actions {
 class Action {
+ public:
   virtual void Execute(engine::GameState& gs);
 };
 }

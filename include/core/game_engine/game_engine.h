@@ -14,19 +14,16 @@ namespace adventure{
 namespace engine{
 class GameEngine{
  public:
-  GameEngine(std::string item_fp, std::string room_fp);
+  GameEngine(const std::string& item_fp, const std::string& room_fp);
   ~GameEngine();
 
-  void HandleAction(actions::Action action);
+  void HandleAction(actions::Action& action);
 
-  GameState gs_;
+
 
 
  private:
-  void LoadRooms();
-  void LoadItems();
-
-
+  GameState gs_;
 };
 }
 }

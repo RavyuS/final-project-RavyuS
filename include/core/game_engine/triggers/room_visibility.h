@@ -9,8 +9,9 @@
 namespace adventure{
 namespace triggers{
 struct RoomVisibility : public Trigger{
-  std::string room_ID;
-  bool hide;
+  RoomVisibility(const std::string room_id, bool visible);
+  std::string room_id_;
+  bool visible_;
   void Execute(engine::GameState &gs) override;
 };
 }

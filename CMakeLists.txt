@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(final_project_RavyuS)
 
 # This tells the compiler to not aggressively optimize and
