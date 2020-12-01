@@ -1,15 +1,17 @@
 //
 // Created by ravyu on 24/11/20.
 //
-
+#pragma once
 #include "../item.h"
 namespace adventure{
-namespace objects{
-class KeypadVault : public Item {
+namespace core{
+class Keypad : public Item {
  public:
-  KeypadVault(const string& id);
+  Keypad(const string& id, int unlock_code);
   void Draw();
   void UpdateOnClick(glm::vec2 click_coords);
+ private:
+  int unlock_code_;
 };
 }
 }

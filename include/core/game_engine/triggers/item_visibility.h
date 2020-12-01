@@ -2,18 +2,19 @@
 // Created by ravyu on 19/11/20.
 //
 
-#ifndef FINAL_PROJECT_RAVYUS_ITEM_VISIBILITY_H
-#define FINAL_PROJECT_RAVYUS_ITEM_VISIBILITY_H
+#pragma once
 #include "trigger.h"
 
-namespace adventure{
-namespace triggers{
-struct ItemVisibility : public Trigger{
-  ItemVisibility(const std::string& item_id, bool visibility);
+namespace adventure {
+namespace core {
+namespace triggers {
+class ItemVisibility : public Trigger {
   std::string item_id_;
   bool visibility_;
-  void Execute(engine::GameState &gs) override;
+  void Execute(core::GameState &gs) override;
+ public:
+  ItemVisibility(const std::string &item_id, bool visibility);
 };
 }
 }
-#endif  // FINAL_PROJECT_RAVYUS_ITEM_VISIBILITY_H
+}

@@ -1,11 +1,7 @@
 //
 // Created by ravyu on 20/11/20.
 //
-
-#ifndef FINAL_PROJECT_RAVYUS_JSON_LOADER_H
-#define FINAL_PROJECT_RAVYUS_JSON_LOADER_H
-
-#endif  // FINAL_PROJECT_RAVYUS_JSON_LOADER_H
+#pragma once
 #include <nlohmann/json.hpp>
 
 #include "core/game_objects/item.h"
@@ -13,7 +9,7 @@
 #include "item_container.h"
 #include "room_container.h"
 namespace adventure{
-namespace engine{
+namespace core{
 class JSONLoader{
 using Json = nlohmann::json;
 
@@ -22,8 +18,10 @@ using Json = nlohmann::json;
   static RoomContainer LoadRooms(const std::string& room_fp);
 
  private:
-  static objects::Room LoadRoom(const Json& js);
-  static objects::Item LoadItem(const std::string type, const Json& js);
+  static Room LoadRoom(const std::string id, Json& js);
+  static Item LoadItem(const std::string id,  Json& js);
+  static TriggerMap GenerateTriggerMap( Json& js);
+  static void AddTriggerToVec(Json& js, std::vector<triggers::Trigger*> &t_vec);
 };
 }
 }

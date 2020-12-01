@@ -5,9 +5,8 @@
 
 #include <core/game_objects/item.h>
 
-
 namespace adventure{
-namespace engine{
+namespace core{
 class ItemContainer{
  public:
   /**
@@ -16,23 +15,23 @@ class ItemContainer{
    * @return Room object
    */
 
-  objects::Item GetItemByID(const std::string& id);
+  Item &GetItemByID(const std::string& id);
 
   /**
    * Returns vector of Items of specified name. Since names are not unique, multiple rooms may be returned.
    * @param name
    * @return
    */
-  std::vector<objects::Item> GetItemByName(const std::string& name);
+  std::vector<Item> GetItemByName(const std::string& name);
 
   /**
    * Add item to this instance of Item Container. All items should ideally be loaded at the very start of the game.
    * @param item
    */
-  void AddItem(objects::Item &item);
+  void AddItem(Item &item);
 
  private:
-  std::vector<objects::Item> items_;
+  std::vector<Item> items_;
 };
 }
 }

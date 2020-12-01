@@ -1,20 +1,19 @@
 //
 // Created by ravyu on 19/11/20.
 //
-
-#ifndef FINAL_PROJECT_RAVYUS_PICKUP_ITEM_H
-#define FINAL_PROJECT_RAVYUS_PICKUP_ITEM_H
+#pragma once
 #include "action.h"
-#endif  // FINAL_PROJECT_RAVYUS_PICKUP_ITEM_H
+
 namespace adventure{
+namespace core{
 namespace actions{
 class Equip : public Action{
  public:
-  Equip(std::string& item_ID);
-  void Execute(engine::GameState& gs) override;
+  Equip(std::string item_ID);
+  void Execute(core::GameState& gs) override;
 
  private:
   std::string item_id_;
 };
 }
-}
+}}

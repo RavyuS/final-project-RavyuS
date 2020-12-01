@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.17)
 project(final_project_RavyuS)
 
+set(CMAKE_CXX_STANDARD 17)
 # This tells the compiler to not aggressively optimize and
 # to include debugging information so that the debugger
 # can properly read what's going on.
@@ -59,11 +60,40 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 file(GLOB_RECURSE core_sources src/core/*.cc)
 
+file(GLOB_RECURSE gui_sources src/gui/*.cc)
+#list(APPEND core_sources
+#        src/core/game_engine/game_engine.cc
+#        src/core/game_engine/game_state.cc
+#        src/core/game_engine/item_container.cc
+#        src/core/game_engine/json_loader.cc
+#        src/core/game_engine/room_container.cc
+#        src/core/game_engine/actions/equip.cc
+#        src/core/game_engine/actions/move_to.cc
+#        src/core/game_engine/triggers/item_visibility.cc
+#        src/core/game_engine/triggers/room_visibility.cc
+#        src/core/game_objects/item.cc
+#        src/core/game_objects/room.cc
+#        src/core/game_objects/interactive_items/static_image.cc
+#        src/core/game_objects/interactive_items/keypad.cc)
+#add_executable(adventure apps/main.cc ${core_sources})
+#target_include_directories(adventure PRIVATE include)
+#target_link_libraries(adventure nlohmann_json::nlohmann_json)
 
 ci_make_app(
         APP_NAME adventure
         CINDER_PATH ${CINDER_PATH}
-        SOURCES apps/main.cc ${core_sources}
         INCLUDES include
+        SOURCES apps/main.cc ${core_sources}
         LIBRARIES nlohmann_json::nlohmann_json
 )
+
+ci_make_app(
+        APP_NAME adventure-gui
+        CINDER_PATH ${CINDER_PATH}
+        INCLUDES include
+        SOURCES apps/adventure.cc ${core_sources} ${gui_sources}
+        LIBRARIES nlohmann_json::nlohmann_json
+)
+if(MSVC)
+    set_property(TARGET naive-bayes-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
+endif()

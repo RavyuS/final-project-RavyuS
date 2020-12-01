@@ -5,15 +5,19 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "core/game_engine/triggers/trigger.h"
+#include "cinder/gl/gl.h"
+//#include "core/game_engine/triggers/trigger.h"
 
 namespace adventure{
 using std::string;
-typedef std::map<string, std::vector<triggers::Trigger>> TriggerMap;
-namespace objects{
 
+namespace core{
+namespace triggers {
+class Trigger;
+}
+typedef std::map<string, std::vector<triggers::Trigger*>> TriggerMap;
 
-struct Item{
+class Item{
 public:
     Item(const string& id);
     /**
@@ -28,7 +32,7 @@ public:
 
     void SetBasicProperties(string name, string img_fp, TriggerMap trigger_map, bool hidden);
 
-    void AddTriggerSet(const string& label, std::vector<triggers::Trigger> &triggers);
+    void AddTriggerSet(const string& label, std::vector<triggers::Trigger*> &triggers);
     /**
      * Item attributes here. Attributes are by default false unless explicitly declared otherwise;
      */

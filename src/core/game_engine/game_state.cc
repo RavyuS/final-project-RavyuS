@@ -4,7 +4,7 @@
 
 #include "core/game_engine/game_state.h"
 namespace adventure{
-namespace engine{
+namespace core{
 GameState::GameState(){}
 }
 }

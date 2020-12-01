@@ -3,19 +3,20 @@
 //
 
 #include "core/game_objects/item.h"
+#include "core/game_engine/triggers/trigger.h"
 
 namespace adventure{
-namespace objects{
+namespace core{
 Item::Item(const string &id) :id_(id){};
 void Item::SetBasicProperties(string name, string img_fp, TriggerMap trigger_map, bool hidden) {
   name_ = name;
   img_fp_ = img_fp;
   trigger_map_ = trigger_map;
-  hidden_ = hidden;
+  visible_ = hidden;
 }
 
-void Item::AddTriggerSet(const string &label, std::vector<triggers::Trigger> &triggers) {
-  trigger_map_.insert(std::pair<string,std::vector<triggers::Trigger>>(label,triggers));
+void Item::AddTriggerSet(const string &label, std::vector<triggers::Trigger*> &triggers) {
+  trigger_map_.insert(std::pair<string,std::vector<triggers::Trigger*>>(label,triggers));
 }
 
 void Item::SetUnlockable(string unlock_item_id, string post_unlock_msg) {
