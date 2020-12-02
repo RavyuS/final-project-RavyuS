@@ -19,7 +19,7 @@ using Json = nlohmann::json;
 
  private:
   static Room LoadRoom(const std::string id, Json& js);
-  static Item LoadItem(const std::string id,  Json& js);
+  static Item* LoadItem(const std::string id, Json& js);
   static TriggerMap GenerateTriggerMap( Json& js);
   static void AddTriggerToVec(Json& js, std::vector<triggers::Trigger*> &t_vec);
 };

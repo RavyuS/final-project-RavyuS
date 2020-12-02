@@ -3,15 +3,23 @@
 //
 #pragma once
 #include "../item.h"
-namespace adventure{
-namespace core{
+#include "cinder/gl/gl.h"
+#include "core/game_engine/actions/action.h"
+namespace adventure::core{
 class Keypad : public Item {
  public:
   Keypad(const string& id, int unlock_code);
-  void Draw();
-  void UpdateOnClick(glm::vec2 click_coords);
+  void Draw(ci::Rectf &boundaries);
+  actions::Action* UpdateOnClick(glm::vec2 &click_coords);
  private:
   int unlock_code_;
+  std::map<char,ci::Rectf> keys_;
+  ci::gl::Texture2dRef keypad_texture;
+  glm::vec2 keypad_top_left_;
+  string input_;
+
+  void LoadKeys(ci::Rectf &boundaries);
+  ci::Rectf GenerateKeyBox(glm::vec2 top_left);
+
 };
-}
 }

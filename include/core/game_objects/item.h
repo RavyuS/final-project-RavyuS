@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 #include "cinder/gl/gl.h"
-//#include "core/game_engine/triggers/trigger.h"
+
 
 namespace adventure{
 using std::string;
@@ -14,6 +14,9 @@ using std::string;
 namespace core{
 namespace triggers {
 class Trigger;
+}
+namespace actions{
+class Action;
 }
 typedef std::map<string, std::vector<triggers::Trigger*>> TriggerMap;
 
@@ -51,12 +54,12 @@ public:
      void SetUnlockable(string unlock_item_id, string post_unlock_msg);
      bool locked_ = true;
      string unlock_item_id_, post_unlock_msg_;
-     bool CanUnlock(std::vector<string> player_inventory);
+     bool CanUnlock(std::vector<Item*> player_inventory);
 
 
      // Interactive item properties.
-     void Draw();
-     void UpdateOnClick(glm::vec2 click_coords);
+     virtual void Draw(ci::Rectf &boundaries) =0;
+     virtual core::actions::Action * UpdateOnClick(glm::vec2 &click_coords) =0;
 
      //Simple Trigger item properties
      string trigger_button_msg_, post_trigger_msg_;

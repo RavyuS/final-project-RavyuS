@@ -6,6 +6,7 @@
 #include "cinder/gl/gl.h"
 #include "core/game_engine/game_engine.h"
 #include "screen_manager.h"
+#include "navigation_manager.h"
 
 namespace adventure{
 namespace gui{
@@ -23,16 +24,18 @@ namespace gui{
 
    void keyDown(ci::app::KeyEvent e) override;
 
+
    const glm::vec2 kWindowSize = glm::vec2 (1280,720);
    const ci::Rectf screenBox = ci::Rectf (glm::vec2(20,20),glm::vec2(895,700));
-   const ci::Rectf invBox = ci::Rectf (glm::vec2(910,20),glm::vec2(1260,470));
-   const ci::Rectf navBox = ci::Rectf(glm::vec2(910,490),glm::vec2(1260,700));
+   const ci::Rectf invBox = ci::Rectf (glm::vec2(910,20),glm::vec2(1260,360));
+   const ci::Rectf navBox = ci::Rectf(glm::vec2(910,380),glm::vec2(1260,700));
 
 
 
   private:
    core::GameEngine ge_;
    ScreenManager *sm_;
+   NavigationManager *nm_;
 
 
 

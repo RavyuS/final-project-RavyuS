@@ -32,7 +32,13 @@
     "name": "Living Room",
     "img_fp": "living_room.png",
     "visible": true,
-    "adjacent_rooms": [
+    "room_items": {
+      "note_cellar_vault" :{
+       "x": 495,
+       "y": 254
+      }
+    },
+"adjacent_rooms": [
       "basement",
       "bathroom",
       "study"
@@ -44,12 +50,12 @@
     "visible": true,
     "room_items": {
       "usb_key": {
-        "x": 200,
-        "y": 200
+        "x": 337,
+        "y": 428
       },
       "note_usb": {
-        "x": 300,
-        "y": 200
+        "x": 381,
+        "y": 474
       }
     },
     "adjacent_rooms": [
@@ -73,5 +79,10 @@
     "adjacent_rooms": [
       "living_room"
     ]
+  },
+  "end": {
+    "name": "Escape",
+    "img_fp": "escape.png",
+    "visible": false
   }
 }

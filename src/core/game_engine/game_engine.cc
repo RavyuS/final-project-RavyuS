@@ -11,7 +11,7 @@ namespace core{
 GameEngine::GameEngine(const std::string &item_fp, const std::string &room_fp) {
 gs_.ic_ = JSONLoader::LoadItems(item_fp);
 gs_.rc_ = JSONLoader::LoadRooms(room_fp);
-gs_.current_room_ = &gs_.rc_.GetRoomByID("basement");
+gs_.current_room_ = &gs_.rc_.GetRoomByID("bathroom");
 }
 
 void GameEngine::HandleAction(actions::Action &action) {

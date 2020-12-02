@@ -5,6 +5,7 @@
 #include <core/game_objects/interactive_items/static_image.h>
 #include <core/game_engine/triggers/item_visibility.h>
 #include <core/game_engine/triggers/room_visibility.h>
+#include "core/game_objects/basic_item.h"
 #include <core/game_objects/interactive_items/keypad.h>
 #include "core/game_engine/json_loader.h"
 #include "nlohmann/json.hpp"
@@ -19,7 +20,7 @@ ItemContainer JSONLoader::LoadItems(const std::string &item_fp) {
 
   ItemContainer ic;
   for(auto &item: js.items()){
-    Item itm = LoadItem(item.key(), item.value());
+    Item *itm = LoadItem(item.key(), item.value());
     ic.AddItem(itm);
   }
   is.close();
@@ -41,12 +42,12 @@ RoomContainer JSONLoader::LoadRooms(const std::string &room_fp) {
 }
 
 
-Item JSONLoader::LoadItem(const std::string id,  Json &js) {
+Item* JSONLoader::LoadItem(const std::string id, Json &js) {
   core::Item *item;
 
   if (js["type"] == "static_image") item = new StaticImage(id, js["display_img_fp"]);
   else if(js["type"] == "keypad") item = new Keypad(id,js["unlock_code"]);
-  else item = new Item(id);
+  else item = new BasicItem(id);
 
 
   TriggerMap tm;
@@ -55,6 +56,10 @@ Item JSONLoader::LoadItem(const std::string id,  Json &js) {
   }
 
   item->SetBasicProperties(js["name"],js["img_fp"],tm,js["visible"]);
+
+  if(js.contains("can_equip")){
+    item->can_equip_ = true;
+  }
 
   if(js.contains("unlockable")){
     item->SetUnlockable(js["unlock_item_id"],js["post_unlock_msg"]);
@@ -66,7 +71,7 @@ Item JSONLoader::LoadItem(const std::string id,  Json &js) {
     item->post_trigger_msg_ = js["post_trigger_msg"];
   }
 
-  return *item;
+  return item;
 }
 
 Room JSONLoader::LoadRoom(const std::string id, Json &js) {

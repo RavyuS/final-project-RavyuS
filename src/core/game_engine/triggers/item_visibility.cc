@@ -10,8 +10,8 @@ namespace triggers {
 ItemVisibility::ItemVisibility(const std::string &item_id, bool visibility) :
     item_id_(item_id), visibility_(visibility) {}
 void ItemVisibility::Execute(core::GameState &gs) {
-  Item &itm = gs.ic_.GetItemByID(item_id_);
-  itm.visible_ = visibility_;
+  Item *itm = gs.ic_.GetItemByID(item_id_);
+  itm->visible_ = visibility_;
 }
 }
 }

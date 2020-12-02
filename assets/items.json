@@ -52,14 +52,23 @@
     "display_img_fp": "cellar_vault_code.png",
     "name": "Mysterious Note",
     "img_fp": "generic_note.png",
-    "visible": false
+    "visible": true
   },
   "cellar_vault": {
     "type": "keypad",
     "unlock_code": 4096,
     "name": "Cellar Vault",
     "img_fp": "vault.png",
-    "visible": true
+    "visible": true,
+    "triggers": {
+      "keypad_unlock": [
+        {
+          "type": "room_visibility",
+          "room_id": "end",
+          "visible": true
+        }
+      ]
+    }
   },
   "computer": {
     "type": "item",

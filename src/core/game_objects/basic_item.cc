@@ -2,12 +2,14 @@
 // Created by ravyu on 24/11/20.
 //
 
-#include "core/game_objects/item.h"
+#include "core/game_objects/basic_item.h"
 #include "core/game_engine/triggers/trigger.h"
 
 namespace adventure{
 namespace core{
-Item::Item(const string &id) :id_(id){};
+BasicItem::BasicItem(const string &id) : Item(id){};
+
+Item::Item(const string &id):id_(id) {}
 void Item::SetBasicProperties(string name, string img_fp, TriggerMap trigger_map, bool hidden) {
   name_ = name;
   img_fp_ = img_fp;
@@ -24,17 +26,17 @@ void Item::SetUnlockable(string unlock_item_id, string post_unlock_msg) {
   unlock_item_id_ = unlock_item_id;
   post_unlock_msg_ = post_unlock_msg;
 }
-bool Item::CanUnlock(std::vector<string> player_inventory) {
+bool Item::CanUnlock(std::vector<Item*> player_inventory) {
 
-  for (string item_id : player_inventory){
-    if (item_id == unlock_item_id_) return true;
+  for (Item *itm : player_inventory){
+    if (itm->id_ == unlock_item_id_) return true;
   }
   return false;
 }
 /**
  * Basic Item shouldn't have Interactive-related functions declared.
  */
-void Item::Draw() {};
-void Item::UpdateOnClick(glm::vec2 click_coords) {}
+void BasicItem::Draw(ci::Rectf &boundaries) {};
+actions::Action * BasicItem::UpdateOnClick(glm::vec2 &click_coords) {}
 }
 }

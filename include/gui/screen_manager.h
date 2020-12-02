@@ -35,14 +35,19 @@ class ScreenManager {
  private:
 
   core::GameState* gs_;
-  core::Item* focus_itm;
-  std::map<string,ci::Rectf> screen_objects;
+  core::Item* focus_itm_;
+  std::map<string,ci::Rectf> screen_objects_;
+  std::map<string,string> menu_string_map_;
 
   void draw_room();
 
+  void draw_item_menu();
+
+  void update_item_menu();
+
   ci::gl::Texture2dRef LoadTexture(string fp);
 
-  void draw_item_menu();
+  core::actions::Action* handle_item_action(const string& action);
 //
 //  void draw_item_interact();
 //
