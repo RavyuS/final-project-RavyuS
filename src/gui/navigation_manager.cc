@@ -4,6 +4,7 @@
 
 #include "gui/navigation_manager.h"
 #include "core/game_engine/actions/move_to.h"
+#include "core/game_engine/actions/no_action.h"
 namespace adventure{
 namespace gui{
 NavigationManager::NavigationManager(ci::Rectf bbox, core::GameState *gs): gs_(gs),bbox_(bbox) {
@@ -17,6 +18,7 @@ core::actions::Action * NavigationManager::HandleMouseEvent(ci::app::MouseEvent 
       return new core::actions::MoveTo(it->first->id_);
     }
   }
+  return new core::actions::NoAction();
 }
 
 void NavigationManager::draw() {
@@ -31,7 +33,8 @@ void NavigationManager::draw() {
 }
 
 void NavigationManager::update(ScreenManager::Screen cur_scr) {
-  if(cur_scr != ScreenManager::ROOM) room_objs_.clear();
+  room_objs_.clear();
+  if(cur_scr != ScreenManager::ROOM) return;
 //  else if (cur_rm_ == gs_->current_room_) return;
   else{
     cur_rm_ = gs_->current_room_;

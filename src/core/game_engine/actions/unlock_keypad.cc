@@ -7,7 +7,7 @@ namespace adventure{
 namespace core{
 namespace actions{
 
-UnlockKeypad::UnlockKeypad(const string &item_id) {};
+UnlockKeypad::UnlockKeypad(const string &item_id):item_id_(item_id) {};
 
 void UnlockKeypad::Execute(core::GameState &gs) {
   core::Item* itm = gs.ic_.GetItemByID(item_id_);

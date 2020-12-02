@@ -11,11 +11,16 @@ namespace adventure::core{
       interactive_ = true;
       unlock_code_ = unlock_code;
       keypad_texture = ci::gl::Texture2d::create(ci::loadImage(ci::app::loadAsset("items/keypad.png")));
+
       input_ = "";
     }
     void Keypad::Draw(ci::Rectf &boundaries) {
       if(keys_.empty()) LoadKeys(boundaries);
+
       ci::gl::draw(keypad_texture,keypad_top_left_);
+
+      glm::vec2 input_vec = glm::vec2 (keypad_top_left_.x,keypad_top_left_.y-100);
+      ci::gl::drawString(input_,input_vec,ci::Color("black"),ci::Font("arial",25));
 
     }
     actions::Action*  Keypad::UpdateOnClick(glm::vec2 &click_coords) {

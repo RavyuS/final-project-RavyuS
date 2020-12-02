@@ -6,6 +6,7 @@
 #include "cinder/gl/Texture.h"
 #include "core/game_engine/actions/no_action.h"
 #include "core/game_engine/actions/equip.h"
+#include "core/game_engine/actions/unlock.h"
 namespace adventure{
 namespace gui{
 ScreenManager::ScreenManager(ci::Rectf bbox, core::GameState *gs):gs_(gs),bbox_(bbox) {
@@ -23,7 +24,8 @@ void ScreenManager::draw() {
   else if(current_screen == ITEM_INTERACT){
     focus_itm_->Draw(bbox_);
   }
-
+  ci::gl::color(ci::Color("black"));
+  ci::gl::drawStrokedRect(bbox_);
 //  ci::gl::color(ci::Color("black"));
 //  ci::gl::drawStrokedRect(bbox_);
 }
@@ -48,6 +50,10 @@ void ScreenManager::update() {
 }
 
 core::actions::Action* ScreenManager::HandleMouseEvent(ci::app::MouseEvent& e) {
+  if(current_screen == ITEM_INTERACT){
+    glm::vec2 pos (e.getPos());
+    return focus_itm_->UpdateOnClick(pos);
+  }
   for(auto it = screen_objects_.cbegin(); it != screen_objects_.cend(); it++){
     if(it->second.contains(e.getPos())){
       if(current_screen == Screen::ROOM){
@@ -58,12 +64,10 @@ core::actions::Action* ScreenManager::HandleMouseEvent(ci::app::MouseEvent& e) {
         current_screen = Screen::ROOM;
         return handle_item_action(it->first);
       }
-      else if(current_screen == ITEM_INTERACT){
-        glm::vec2 pos (e.getPos());
-        return focus_itm_->UpdateOnClick(pos);
-      }
+
     }
   }
+
   return new core::actions::NoAction();
 }
 void ScreenManager::draw_room() {
@@ -82,7 +86,6 @@ void ScreenManager::draw_room() {
 }
 void ScreenManager::draw_item_menu() {
   ci::gl::color(ci::Color("black"));
-  ci::gl::drawStrokedRect(bbox_);
   ci::gl::drawStringCentered("Viewing "+focus_itm_->name_,screen_objects_["item"].getCenter(),ci::Color("black"),ci::Font("roboto", 30));
   ci::gl::drawStrokedRect(screen_objects_["item"]);
   for(auto it = screen_objects_.cbegin(); it != screen_objects_.cend(); it++) {
@@ -91,14 +94,14 @@ void ScreenManager::draw_item_menu() {
                                  it->second.getCenter(),
                                  ci::Color("black"),
                                  ci::Font("roboto", 15));
-      ci::gl::color(ci::Color("black"));
+//      ci::gl::color(ci::Color("black"));
       ci::gl::drawStrokedRect(it->second);
     }
   }
 
 }
 void ScreenManager::update_item_menu() {
-  screen_objects_["item"] = ci::Rectf(338,50,538,150);
+  screen_objects_["item"] = ci::Rectf(128,50,738,150);
 
   const float option_width_half = 200;
   ci::Rectf def(0,0,0,0);
@@ -115,7 +118,7 @@ void ScreenManager::update_item_menu() {
   }
   if(focus_itm_->unlockable_ &&focus_itm_->locked_ && focus_itm_->CanUnlock(gs_->player_inventory_)){
     screen_objects_["unlock"] = def;
-    menu_string_map_["unlock"] = "Unlock with" + gs_->ic_.GetItemByID(focus_itm_->unlock_item_id_)->name_;
+    menu_string_map_["unlock"] = "Unlock with " + gs_->ic_.GetItemByID(focus_itm_->unlock_item_id_)->name_;
     count_options++;
   }
   if(focus_itm_->interactive_){
@@ -148,6 +151,9 @@ core::actions::Action* ScreenManager::handle_item_action(const string &action) {
   else if(action == "interactive"){
     current_screen = ITEM_INTERACT;
     return new core::actions::NoAction();
+  }
+  else if(action == "unlock"){
+    return new core::actions::Unlock(focus_itm_->id_);
   }
 }
 }

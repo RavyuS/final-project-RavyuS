@@ -5,12 +5,13 @@
     "visible": false,
     "room_items": {
       "cellar_vault": {
-        "x": 200,
-        "y": 200
+        "x": 674,
+        "y": 305
       }
     },
     "adjacent_rooms": [
-      "basement"
+      "basement",
+      "end"
     ]
   },
   "basement": {
@@ -68,12 +69,12 @@
     "visible": true,
     "room_items": {
       "computer": {
-        "x": 200,
-        "y": 200
+        "x": 584,
+        "y": 318
       },
       "cellar_key": {
-        "x": 500,
-        "y": 100
+        "x": 336,
+        "y": 141
       }
     },
     "adjacent_rooms": [
