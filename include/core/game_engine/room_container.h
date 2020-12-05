@@ -28,6 +28,11 @@ class RoomContainer{
    */
   void AddRoom(Room *rm);
 
+  /**
+   * Clears up memory used by Room objects in the heap.
+   */
+  void Clear();
+
 
 
  private:

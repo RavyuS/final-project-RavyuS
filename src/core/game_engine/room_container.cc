@@ -22,6 +22,13 @@ std::vector<Room *> RoomContainer::GetRoomByName(const std::string &name) const{
 void RoomContainer::AddRoom(Room *rm) {
   rooms_.push_back(rm);
 }
+void RoomContainer::Clear() {
+for(Room *rm:rooms_){
+  delete rm;
+  rm = nullptr;
+}
+rooms_.clear();
+}
 
 }
 }

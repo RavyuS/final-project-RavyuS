@@ -2,6 +2,8 @@
 // Created by ravyu on 24/11/20.
 //
 
+#include <core/game_objects/item.h>
+
 #include "core/game_objects/basic_item.h"
 #include "core/game_engine/triggers.h"
 
@@ -15,6 +17,17 @@ void Item::SetBasicProperties(string name, string img_fp, TriggerMap trigger_map
   img_fp_ = img_fp;
   trigger_map_ = trigger_map;
   visible_ = hidden;
+}
+
+Item::~Item() {
+for(auto it = trigger_map_.begin(); it != trigger_map_.end(); it++){
+  for(triggers::Trigger *tg : it->second){
+    delete tg;
+    tg = nullptr;
+  }
+  it->second.clear();
+}
+trigger_map_.clear();
 }
 
 void Item::AddTriggerSet(const string &label, std::vector<triggers::Trigger*> &triggers) {
@@ -33,6 +46,7 @@ bool Item::CanUnlock(std::vector<Item*> player_inventory) {
   }
   return false;
 }
+
 /**
  * Basic Item shouldn't have Interactive-related functions declared.
  */

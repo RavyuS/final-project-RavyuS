@@ -10,8 +10,6 @@
 namespace adventure{
 namespace core{
 class GameState{
-
-
  public:
   Room* current_room_;
   std::vector<Item*> player_inventory_;
@@ -19,6 +17,7 @@ class GameState{
   ItemContainer ic_;
 
   GameState();
+  ~GameState();
 };
 }
 }

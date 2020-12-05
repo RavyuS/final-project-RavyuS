@@ -30,6 +30,11 @@ class ItemContainer{
    */
   void AddItem(Item *item);
 
+  /**
+   * Clears up memory used by Room objects in the heap.
+   */
+  void Clear();
+
  private:
   std::vector<Item*> items_;
 };

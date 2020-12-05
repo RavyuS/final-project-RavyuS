@@ -21,5 +21,12 @@ std::vector<Item*> ItemContainer::GetItemByName(const std::string &name) const {
 void ItemContainer::AddItem(Item* item) {
   items_.push_back(item);
 }
+void ItemContainer::Clear() {
+  for(Item *itm: items_){
+    delete itm;
+    itm = nullptr;
+  }
+  items_.clear();
+}
 }
 }

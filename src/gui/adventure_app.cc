@@ -48,6 +48,9 @@ void AdventureApp::keyDown(ci::app::KeyEvent e) {
 
 void AdventureApp::cleanup() {
   delete ge_,sm_,nm_;
+  ge_ =  nullptr;
+  sm_ = nullptr;
+  nm_ = nullptr;
 }
 }
 }

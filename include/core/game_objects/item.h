@@ -26,6 +26,7 @@ typedef std::map<string, std::vector<triggers::Trigger*>> TriggerMap;
 class Item{
 public:
     Item(const string& id);
+    ~Item();
     /**
      * Basic Item properties
      */
