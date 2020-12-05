@@ -12,12 +12,15 @@ namespace adventure{
 using std::string;
 
 namespace core{
+
+//Handle errors related to circular dependancies
 namespace triggers {
 class Trigger;
 }
 namespace actions{
 class Action;
 }
+
 typedef std::map<string, std::vector<triggers::Trigger*>> TriggerMap;
 
 class Item{

@@ -5,7 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "core/game_engine/game_state.h"
 #include "cinder/app/App.h"
-#include "core/game_engine/actions/action.h"
+#include "core/game_engine/actions.h"
 
 
 namespace adventure{

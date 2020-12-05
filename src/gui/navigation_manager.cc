@@ -3,8 +3,8 @@
 //
 
 #include "gui/navigation_manager.h"
-#include "core/game_engine/actions/move_to.h"
-#include "core/game_engine/actions/no_action.h"
+#include "core/game_engine/actions.h"
+
 namespace adventure{
 namespace gui{
 NavigationManager::NavigationManager(ci::Rectf bbox, core::GameState *gs): gs_(gs),bbox_(bbox) {

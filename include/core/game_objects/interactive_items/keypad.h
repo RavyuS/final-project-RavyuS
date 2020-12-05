@@ -4,7 +4,7 @@
 #pragma once
 #include "../item.h"
 #include "cinder/gl/gl.h"
-#include "core/game_engine/actions/action.h"
+#include "core/game_engine/actions.h"
 namespace adventure::core{
 class Keypad : public Item {
  public:

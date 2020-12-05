@@ -4,9 +4,7 @@
 
 #include "gui/screen_manager.h"
 #include "cinder/gl/Texture.h"
-#include "core/game_engine/actions/no_action.h"
-#include "core/game_engine/actions/equip.h"
-#include "core/game_engine/actions/unlock.h"
+#include "core/game_engine/actions.h"
 namespace adventure{
 namespace gui{
 ScreenManager::ScreenManager(ci::Rectf bbox, core::GameState *gs):gs_(gs),bbox_(bbox) {
@@ -26,8 +24,7 @@ void ScreenManager::draw() {
   }
   ci::gl::color(ci::Color("black"));
   ci::gl::drawStrokedRect(bbox_);
-//  ci::gl::color(ci::Color("black"));
-//  ci::gl::drawStrokedRect(bbox_);
+
 }
 
 void ScreenManager::update() {

@@ -3,8 +3,7 @@
 //
 
 #include "core/game_objects/interactive_items/keypad.h"
-#include "core/game_engine/actions/unlock_keypad.h"
-#include "core/game_engine/actions/no_action.h"
+#include "core/game_engine/actions.h"
 #include "cinder/app/App.h"
 namespace adventure::core{
     Keypad::Keypad(const string &id, int unlock_code) : Item(id) {

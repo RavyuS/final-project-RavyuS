@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-#include "core/game_engine/actions/action.h"
+#include "actions.h"
 #include "game_state.h"
 namespace adventure{
 namespace core{

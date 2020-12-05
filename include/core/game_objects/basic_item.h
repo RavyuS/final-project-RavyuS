@@ -1,7 +1,7 @@
 //
 // Created by ravyu on 1/12/20.
 //
-#include <core/game_engine/actions/action.h>
+#include <core/game_engine/actions.h>
 #include "item.h"
 namespace adventure{
 namespace core{

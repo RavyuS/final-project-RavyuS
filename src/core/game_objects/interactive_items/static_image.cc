@@ -3,7 +3,7 @@
 //
 
 #include "core/game_objects/interactive_items/static_image.h"
-#include "core/game_engine/actions/no_action.h"
+#include "core/game_engine/actions.h"
 #include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 namespace adventure{
