@@ -13,25 +13,25 @@ class RoomContainer{
    * @param id
    * @return Room object
    */
-  Room& GetRoomByID(const std::string& id);
+  Room * GetRoomByID(const std::string& id) const;
 
   /**
    * Returns vector of rooms of specified name. Since names are not unique, multiple rooms may be returned.
    * @param name
    * @return
    */
-  std::vector<Room> GetRoomByName(const std::string& name);
+  std::vector<Room *> GetRoomByName(const std::string& name)const;
 
   /**
    * Add room to this instance of Room Container. All rooms should ideally be loaded at the very start of the game.
    * @param rm
    */
-  void AddRoom(Room &rm);
+  void AddRoom(Room *rm);
 
 
 
  private:
-  std::vector<Room> rooms_;
+  std::vector<Room*> rooms_;
 
 
 };

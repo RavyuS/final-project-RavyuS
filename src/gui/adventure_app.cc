@@ -8,9 +8,10 @@ namespace adventure{
 namespace gui{
 std::string room_fp = "../../../assets/rooms.json";
 std::string item_fp = "../../../assets/items.json";
-AdventureApp::AdventureApp():ge_(item_fp, room_fp) {
-  sm_ = new ScreenManager(screenBox,ge_.GetGameState());
-  nm_ = new NavigationManager(navBox,ge_.GetGameState());
+AdventureApp::AdventureApp() {
+  ge_ = new core::GameEngine(item_fp,room_fp);
+  sm_ = new ScreenManager(screenBox,ge_->GetGameState());
+  nm_ = new NavigationManager(navBox,ge_->GetGameState());
   ci::app::setWindowSize(kWindowSize);
 }
 void AdventureApp::draw() {
@@ -33,9 +34,9 @@ void AdventureApp::update() {
 void AdventureApp::mouseDown(ci::app::MouseEvent e) {
 
   if(screenBox.contains(e.getPos())){
-    ge_.HandleAction(*sm_->HandleMouseEvent(e));
+    ge_->HandleAction(*sm_->HandleMouseEvent(e));
   }
-  else if (navBox.contains(e.getPos())) ge_.HandleAction(*nm_->HandleMouseEvent(e));
+  else if (navBox.contains(e.getPos())) ge_->HandleAction(*nm_->HandleMouseEvent(e));
 }
 void AdventureApp::keyDown(ci::app::KeyEvent e) {
   AppBase::keyDown(e);
@@ -45,5 +46,8 @@ void AdventureApp::keyDown(ci::app::KeyEvent e) {
   }
 }
 
+void AdventureApp::cleanup() {
+  delete ge_,sm_,nm_;
+}
 }
 }

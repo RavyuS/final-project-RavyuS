@@ -7,7 +7,7 @@
 #include "core/game_engine/actions.h"
 namespace adventure{
 namespace gui{
-ScreenManager::ScreenManager(ci::Rectf bbox, core::GameState *gs):gs_(gs),bbox_(bbox) {
+ScreenManager::ScreenManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs):gs_(gs),bbox_(bbox) {
   current_screen = Screen::ROOM;
 }
 
@@ -152,6 +152,12 @@ core::actions::Action* ScreenManager::handle_item_action(const string &action) {
   else if(action == "unlock"){
     return new core::actions::Unlock(focus_itm_->id_);
   }
+}
+ScreenManager::~ScreenManager() {
+  gs_.reset();
+  focus_itm_ = nullptr;
+  screen_objects_.clear();
+  menu_string_map_.clear();
 }
 }
 }

@@ -20,7 +20,8 @@ class ScreenManager {
     ITEM_ACTION,
     ITEM_INTERACT
   };
-  ScreenManager(ci::Rectf bbox, core::GameState *gs);
+  ScreenManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs);
+  ~ScreenManager();
 
 
   core::actions::Action* HandleMouseEvent(ci::app::MouseEvent &e);
@@ -34,7 +35,7 @@ class ScreenManager {
 
  private:
 
-  core::GameState* gs_;
+  std::shared_ptr<const core::GameState> gs_;
   core::Item* focus_itm_;
   std::map<string,ci::Rectf> screen_objects_;
   std::map<string,string> menu_string_map_;

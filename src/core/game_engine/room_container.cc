@@ -6,20 +6,20 @@
 
 namespace adventure{
 namespace core{
-core::Room& RoomContainer::GetRoomByID(const std::string &id) {
-  for (core::Room &rm : rooms_){
-    if(rm.id_ == id) return rm;
+Room * RoomContainer::GetRoomByID(const std::string &id) const{
+  for (core::Room *rm : rooms_){
+    if(rm->id_ == id) return rm;
   }
 }
-std::vector<core::Room> RoomContainer::GetRoomByName(const std::string &name) {
-  std::vector<core::Room> rooms;
-  for(core::Room &rm : rooms_){
-    if(rm.name_ == name) rooms.push_back(rm);
+std::vector<Room *> RoomContainer::GetRoomByName(const std::string &name) const{
+  std::vector<core::Room*> rooms;
+  for(core::Room *rm : rooms_){
+    if(rm->name_ == name) rooms.push_back(rm);
   }
   return rooms;
 }
 
-void RoomContainer::AddRoom(core::Room &rm) {
+void RoomContainer::AddRoom(Room *rm) {
   rooms_.push_back(rm);
 }
 

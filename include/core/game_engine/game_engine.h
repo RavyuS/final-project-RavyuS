@@ -12,15 +12,16 @@ class GameEngine{
  public:
   GameEngine(const std::string& item_fp, const std::string& room_fp);
 
+  ~GameEngine();
 
   void HandleAction(actions::Action& action);
 
-  GameState* GetGameState();
+  std::shared_ptr<GameState> GetGameState();
 
 
 
  private:
-  GameState gs_;
+  std::shared_ptr<GameState> gs_;
 };
 }
 }

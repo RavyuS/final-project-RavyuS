@@ -11,15 +11,15 @@ namespace triggers {
 RoomVisibility::RoomVisibility(const std::string room_id, bool visible) :
     room_id_(room_id), visible_(visible) {}
 
-void RoomVisibility::Execute(core::GameState &gs) {
-  core::Room &rm = gs.rc_.GetRoomByID(room_id_);
+void RoomVisibility::Execute(std::shared_ptr<GameState> gs) {
+  core::Room &rm = gs->rc_.GetRoomByID(room_id_);
   rm.visible_ = visible_;
 }
 
 ItemVisibility::ItemVisibility(const std::string &item_id, bool visibility) :
     item_id_(item_id), visibility_(visibility) {}
-void ItemVisibility::Execute(core::GameState &gs) {
-  Item *itm = gs.ic_.GetItemByID(item_id_);
+void ItemVisibility::Execute(std::shared_ptr<GameState> gs) {
+  Item *itm = gs->ic_.GetItemByID(item_id_);
   itm->visible_ = visibility_;
 }
 }

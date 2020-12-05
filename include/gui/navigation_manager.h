@@ -12,7 +12,9 @@ namespace adventure{
 namespace gui{
 class NavigationManager {
  public:
-  NavigationManager(ci::Rectf bbox, core::GameState *gs);
+  NavigationManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs);
+
+  ~NavigationManager();
 
   core::actions::Action* HandleMouseEvent(ci::app::MouseEvent &e);
 
@@ -25,7 +27,7 @@ class NavigationManager {
  private:
   core::Room *cur_rm_;
   std::map<core::Room* ,ci::Rectf> room_objs_;
-  core::GameState *gs_;
+  std::shared_ptr<const core::GameState> gs_;
   glm::vec2 title_offset_ = glm::vec2 (0,120);
   ci::Area GetIndividualBoxSize(int numRooms);
 };

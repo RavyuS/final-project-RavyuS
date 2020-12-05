@@ -15,14 +15,14 @@ class ItemContainer{
    * @return Room object
    */
 
-  Item *GetItemByID(const std::string& id);
+  Item *GetItemByID(const std::string& id) const;
 
   /**
    * Returns vector of Items of specified name. Since names are not unique, multiple rooms may be returned.
    * @param name
    * @return
    */
-  std::vector<Item*> GetItemByName(const std::string& name);
+  std::vector<Item*> GetItemByName(const std::string& name) const;
 
   /**
    * Add item to this instance of Item Container. All items should ideally be loaded at the very start of the game.

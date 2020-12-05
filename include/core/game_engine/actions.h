@@ -10,13 +10,13 @@ namespace core{
 namespace actions {
 class Action {
  public:
-  virtual void Execute(core::GameState& gs) =0 ;
+  virtual void Execute(std::shared_ptr<core::GameState> gs) =0 ;
 };
 
 class Equip : public Action{
  public:
   Equip(std::string item_ID);
-  void Execute(core::GameState& gs) override;
+  void Execute(std::shared_ptr<core::GameState> gs) override;
 
  private:
   std::string item_id_;
@@ -25,7 +25,7 @@ class Equip : public Action{
 class MoveTo : public Action {
  public:
   MoveTo(std::string dest_ID);
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<core::GameState> gs) override;
 
  private:
   std::string dest_ID_;
@@ -34,7 +34,7 @@ class MoveTo : public Action {
 class  NoAction: public Action {
  public:
   NoAction();
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<core::GameState> gs) override;
 
 
 };
@@ -42,7 +42,7 @@ class  NoAction: public Action {
 class Unlock : public Action {
  public:
   Unlock(const string& item_id);
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<core::GameState> gs) override;
 
  private:
   string item_id_;
@@ -51,7 +51,7 @@ class Unlock : public Action {
 class UnlockKeypad : public Action {
  public:
   UnlockKeypad(const string& item_id);
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<core::GameState> gs) override;
 
  private:
   string item_id_;

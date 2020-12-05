@@ -24,6 +24,7 @@ namespace gui{
 
    void keyDown(ci::app::KeyEvent e) override;
 
+   void cleanup() override;
 
    const glm::vec2 kWindowSize = glm::vec2 (1280,720);
    const ci::Rectf screenBox = ci::Rectf (glm::vec2(20,20),glm::vec2(895,700));
@@ -33,7 +34,7 @@ namespace gui{
 
 
   private:
-   core::GameEngine ge_;
+   core::GameEngine* ge_;
    ScreenManager *sm_;
    NavigationManager *nm_;
 

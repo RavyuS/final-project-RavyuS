@@ -10,7 +10,7 @@ namespace core {
 namespace triggers {
 class Trigger {
  public:
-  virtual void Execute(core::GameState &gs) =0;
+  virtual void Execute(std::shared_ptr<GameState> gs) =0;
 };
 
 class RoomVisibility : public Trigger {
@@ -18,7 +18,7 @@ class RoomVisibility : public Trigger {
   RoomVisibility(const std::string room_id, bool visible);
   std::string room_id_;
   bool visible_;
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<GameState> gs) override;
 };
 
 class ItemVisibility : public Trigger {
@@ -27,7 +27,7 @@ class ItemVisibility : public Trigger {
 
  public:
   ItemVisibility(const std::string &item_id, bool visibility);
-  void Execute(core::GameState &gs) override;
+  void Execute(std::shared_ptr<GameState> gs) override;
 };
 }
 }

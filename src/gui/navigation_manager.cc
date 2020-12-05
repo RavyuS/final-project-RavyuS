@@ -7,7 +7,8 @@
 
 namespace adventure{
 namespace gui{
-NavigationManager::NavigationManager(ci::Rectf bbox, core::GameState *gs): gs_(gs),bbox_(bbox) {
+NavigationManager::NavigationManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs):gs_(gs), bbox_(bbox) {
+
   cur_rm_ = gs_->current_room_;
   update(ScreenManager::ROOM);
 }
@@ -58,6 +59,11 @@ void NavigationManager::update(ScreenManager::Screen cur_scr) {
 }
 ci::Area NavigationManager::GetIndividualBoxSize(int numRooms) {
   return ci::Area();
+}
+NavigationManager::~NavigationManager() {
+
+  gs_.reset();
+  cur_rm_ = nullptr;
 }
 }
 }
