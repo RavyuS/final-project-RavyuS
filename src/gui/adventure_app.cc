@@ -32,11 +32,17 @@ void AdventureApp::update() {
 }
 
 void AdventureApp::mouseDown(ci::app::MouseEvent e) {
-
+  core::actions::Action *ac;
   if(screenBox.contains(e.getPos())){
-    ge_->HandleAction(*sm_->HandleMouseEvent(e));
+     ac = sm_->HandleMouseEvent(e);
+    ge_->HandleAction(*ac);
   }
-  else if (navBox.contains(e.getPos())) ge_->HandleAction(*nm_->HandleMouseEvent(e));
+  else if (navBox.contains(e.getPos())){
+    ac = nm_->HandleMouseEvent(e);
+    ge_->HandleAction(*ac);
+  }
+  delete ac;
+  ac = nullptr;
 }
 void AdventureApp::keyDown(ci::app::KeyEvent e) {
   AppBase::keyDown(e);
