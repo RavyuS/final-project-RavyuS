@@ -1,12 +1,11 @@
 //
 // Created by ravyu on 20/11/20.
 //
-#include <stdio.h>
+
 #include <core/game_objects/interactive_items/static_image.h>
-#include <core/game_engine/triggers/item_visibility.h>
-#include <core/game_engine/triggers/room_visibility.h>
 #include "core/game_objects/basic_item.h"
 #include <core/game_objects/interactive_items/keypad.h>
+#include <core/game_engine/triggers.h>
 #include "core/game_engine/json_loader.h"
 #include "nlohmann/json.hpp"
 #include "core/game_objects/item.h"

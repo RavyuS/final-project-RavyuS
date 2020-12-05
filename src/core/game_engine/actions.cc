@@ -1,7 +1,7 @@
 //
 // Created by ravyu on 25/11/20.
 //
-#include <core/game_engine/triggers/trigger.h>
+#include <core/game_engine/triggers.h>
 #include "core/game_objects/item.h"
 #include "core/game_engine/actions.h"
 

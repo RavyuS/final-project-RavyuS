@@ -3,7 +3,7 @@
 //
 
 #include "core/game_objects/basic_item.h"
-#include "core/game_engine/triggers/trigger.h"
+#include "core/game_engine/triggers.h"
 
 namespace adventure{
 namespace core{
