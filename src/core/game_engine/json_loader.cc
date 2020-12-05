@@ -33,7 +33,7 @@ RoomContainer JSONLoader::LoadRooms(const std::string &room_fp) {
 
   RoomContainer rc;
   for(auto &room: js.items()){
-    Room rm = LoadRoom(room.key(),room.value());
+    Room *rm = LoadRoom(room.key(),room.value());
     rc.AddRoom(rm);
   }
   is.close();
@@ -73,18 +73,18 @@ Item* JSONLoader::LoadItem(const std::string id, Json &js) {
   return item;
 }
 
-Room JSONLoader::LoadRoom(const std::string id, Json &js) {
-  core::Room rm(id);
-  rm.name_ = js["name"];
-  rm.img_fp_ = js["img_fp"];
-  rm.visible_ = js["visible"];
+Room * JSONLoader::LoadRoom(const std::string id, Json &js) {
+  core::Room *rm = new core::Room(id);
+  rm->name_ = js["name"];
+  rm->img_fp_ = js["img_fp"];
+  rm->visible_ = js["visible"];
 
   if(js.contains("adjacent_rooms")){
     std::vector<string> adj_rms;
     for(auto &adj_rm: js["adjacent_rooms"].items()){
       adj_rms.push_back(adj_rm.value());
     }
-    rm.adjacent_rooms_ = std::move(adj_rms);
+    rm->adjacent_rooms_ = std::move(adj_rms);
   }
   if(js.contains("room_items")){
     std::map<string , glm::vec2> rm_itms;
@@ -92,7 +92,7 @@ Room JSONLoader::LoadRoom(const std::string id, Json &js) {
       glm::vec2 coords(itm.value()["x"],itm.value()["y"]);
       rm_itms[itm.key()] = coords;
     }
-    rm.room_items_ = rm_itms;
+    rm->room_items_ = rm_itms;
   }
   return rm;
 }

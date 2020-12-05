@@ -23,7 +23,7 @@ void Equip::Execute(std::shared_ptr<core::GameState> gs) {
 MoveTo::MoveTo(std::string dest_ID) : dest_ID_(dest_ID) {}
 
 void MoveTo::Execute(std::shared_ptr<core::GameState> gs) {
-  gs->current_room_ = &gs->rc_.GetRoomByID(dest_ID_);
+  gs->current_room_ = gs->rc_.GetRoomByID(dest_ID_);
 }
 
 

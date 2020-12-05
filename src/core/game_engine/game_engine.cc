@@ -12,7 +12,7 @@ GameEngine::GameEngine(const std::string &item_fp, const std::string &room_fp) {
   gs_ = std::make_shared<GameState>();
   gs_->ic_ = JSONLoader::LoadItems(item_fp);
   gs_->rc_ = JSONLoader::LoadRooms(room_fp);
-  gs_->current_room_ = &gs_->rc_.GetRoomByID("bathroom");
+  gs_->current_room_ = gs_->rc_.GetRoomByID("bathroom");
 }
 
 void GameEngine::HandleAction(actions::Action &action) {
@@ -21,7 +21,9 @@ void GameEngine::HandleAction(actions::Action &action) {
 std::shared_ptr<GameState> GameEngine::GetGameState() {
   return gs_;
 }
-
+GameEngine::~GameEngine() {
+  gs_.reset();
+}
 
 }
 }

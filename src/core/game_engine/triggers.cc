@@ -12,8 +12,8 @@ RoomVisibility::RoomVisibility(const std::string room_id, bool visible) :
     room_id_(room_id), visible_(visible) {}
 
 void RoomVisibility::Execute(std::shared_ptr<GameState> gs) {
-  core::Room &rm = gs->rc_.GetRoomByID(room_id_);
-  rm.visible_ = visible_;
+  core::Room *rm = gs->rc_.GetRoomByID(room_id_);
+  rm->visible_ = visible_;
 }
 
 ItemVisibility::ItemVisibility(const std::string &item_id, bool visibility) :

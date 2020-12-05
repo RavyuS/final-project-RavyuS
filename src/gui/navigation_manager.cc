@@ -42,9 +42,9 @@ void NavigationManager::update(ScreenManager::Screen cur_scr) {
     ci::Rectf def(0,0,0,0);
     int visible_rm_count = 0;
     for(string rm_id : cur_rm_->adjacent_rooms_){
-      core::Room &rm = gs_->rc_.GetRoomByID(rm_id);
-      if(rm.visible_){
-        room_objs_[&rm] = def;
+      core::Room *rm = gs_->rc_.GetRoomByID(rm_id);
+      if(rm->visible_){
+        room_objs_[rm] = def;
         visible_rm_count ++;
       }
     }
