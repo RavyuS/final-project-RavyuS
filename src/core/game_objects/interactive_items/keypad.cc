@@ -59,4 +59,16 @@ ci::Rectf Keypad::GenerateKeyBox(glm::vec2 top_left) {
 
   return cinder::Rectf(top_left,top_left+key_size);
 }
+Keypad::~Keypad() {
+  for(auto it = trigger_map_.begin(); it != trigger_map_.end(); it++){
+    for(triggers::Trigger *tg : it->second){
+      delete tg;
+      tg = nullptr;
+    }
+    it->second.clear();
+  }
+  trigger_map_.clear();
+  keypad_texture.reset();
+  keys_.clear();
+}
 }

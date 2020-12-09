@@ -20,7 +20,7 @@ void StaticImage::Draw(ci::Rectf &boundaries) {
   top_left.x -= width_offset;
   top_left.y -= height_offset;
   ci::gl::draw(image,ci::Rectf(top_left,top_left+glm::vec2(image->getSize())));
-
+  image.reset();
 }
 actions::Action * StaticImage::UpdateOnClick(glm::vec2 &click_coords) {
   return new actions::NoAction();

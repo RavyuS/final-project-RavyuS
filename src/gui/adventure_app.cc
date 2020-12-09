@@ -24,8 +24,6 @@ void AdventureApp::draw() {
 
 }
 
-void AdventureApp::setup() {}
-
 void AdventureApp::update() {
   sm_->update();
   nm_->update(sm_->current_screen);
@@ -50,13 +48,16 @@ void AdventureApp::keyDown(ci::app::KeyEvent e) {
     if (sm_->current_screen == sm_->ITEM_ACTION) sm_->current_screen = sm_->ROOM;
     else if(sm_->current_screen == sm_->ITEM_INTERACT) sm_->current_screen = sm_->ITEM_ACTION;
   }
+  else if (e.getCode() == e.KEY_BACKSPACE){
+   quit();
+  }
 }
 
 void AdventureApp::cleanup() {
-  delete ge_,sm_,nm_;
-  ge_ =  nullptr;
-  sm_ = nullptr;
-  nm_ = nullptr;
+  delete sm_;
+  delete nm_;
+  delete ge_;
+
 }
 }
 }

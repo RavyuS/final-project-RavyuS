@@ -7,7 +7,7 @@
 #include "core/game_engine/actions.h"
 namespace adventure{
 namespace gui{
-ScreenManager::ScreenManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs):gs_(gs),bbox_(bbox) {
+ScreenManager::ScreenManager(ci::Rectf bbox, std::shared_ptr<const core::GameState> gs):gs_(gs),bbox_(bbox) {
   current_screen = Screen::ROOM;
 }
 
@@ -30,16 +30,7 @@ void ScreenManager::draw() {
 void ScreenManager::update() {
   screen_objects_.clear();
   if(current_screen == Screen::ROOM){
-    core::Room *cur_rm = gs_->current_room_;
-    for (auto it = cur_rm->room_items_.cbegin(); it != cur_rm->room_items_.cend(); it++){
-      core::Item *itm = gs_->ic_.GetItemByID(it->first);
-      if(itm->visible_) {
-        ci::gl::Texture2dRef img = LoadTexture("items/" + itm->img_fp_);
-        glm::vec2 top_left = it->second + bbox_.getUpperLeft();
-        screen_objects_[itm->id_] = ci::Rectf(top_left, top_left + glm::vec2(img->getSize()));
-        img.reset();
-      }
-    }
+    update_room();
   }
   if(current_screen == ITEM_ACTION){
     update_item_menu();
@@ -97,6 +88,20 @@ void ScreenManager::draw_item_menu() {
   }
 
 }
+
+void ScreenManager::update_room() {
+  core::Room *cur_rm = gs_->current_room_;
+  for (auto it = cur_rm->room_items_.cbegin(); it != cur_rm->room_items_.cend(); it++){
+    core::Item *itm = gs_->ic_.GetItemByID(it->first);
+    if(itm->visible_) {
+      ci::gl::Texture2dRef img = LoadTexture("items/" + itm->img_fp_);
+      glm::vec2 top_left = it->second + bbox_.getUpperLeft();
+      screen_objects_[itm->id_] = ci::Rectf(top_left, top_left + glm::vec2(img->getSize()));
+      img.reset();
+    }
+  }
+}
+
 void ScreenManager::update_item_menu() {
   screen_objects_["item"] = ci::Rectf(128,50,738,150);
 
@@ -159,5 +164,6 @@ ScreenManager::~ScreenManager() {
   screen_objects_.clear();
   menu_string_map_.clear();
 }
+
 }
 }

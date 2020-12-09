@@ -31,7 +31,7 @@ trigger_map_.clear();
 }
 
 void Item::AddTriggerSet(const string &label, std::vector<triggers::Trigger*> &triggers) {
-  trigger_map_.insert(std::pair<string,std::vector<triggers::Trigger*>>(label,triggers));
+  trigger_map_[label] = triggers;
 }
 
 void Item::SetUnlockable(string unlock_item_id, string post_unlock_msg) {

@@ -7,7 +7,7 @@
 
 namespace adventure{
 namespace gui{
-NavigationManager::NavigationManager(ci::Rectf bbox, std::shared_ptr<core::GameState> gs):gs_(gs), bbox_(bbox) {
+NavigationManager::NavigationManager(ci::Rectf bbox, std::shared_ptr<const core::GameState> gs):gs_(gs), bbox_(bbox) {
 
   cur_rm_ = gs_->current_room_;
   update(ScreenManager::ROOM);
@@ -33,7 +33,7 @@ void NavigationManager::draw() {
 
 }
 
-void NavigationManager::update(ScreenManager::Screen cur_scr) {
+void NavigationManager::update(const ScreenManager::Screen &cur_scr) {
   room_objs_.clear();
   if(cur_scr != ScreenManager::ROOM) return;
 //  else if (cur_rm_ == gs_->current_room_) return;
@@ -64,6 +64,7 @@ NavigationManager::~NavigationManager() {
 
   gs_.reset();
   cur_rm_ = nullptr;
+  room_objs_.clear();
 }
 }
 }
