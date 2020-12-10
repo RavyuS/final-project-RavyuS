@@ -75,25 +75,23 @@ Item* JSONLoader::LoadItem(const std::string id, Json &js) {
 
 Room * JSONLoader::LoadRoom(const std::string id, Json &js) {
   core::Room *rm = new core::Room(id);
-  rm->name_ = js["name"];
-  rm->img_fp_ = js["img_fp"];
-  rm->visible_ = js["visible"];
+  std::vector<string> adj_rms;
+  std::map<string , glm::vec2> rm_itms;
 
   if(js.contains("adjacent_rooms")){
-    std::vector<string> adj_rms;
     for(auto &adj_rm: js["adjacent_rooms"].items()){
       adj_rms.push_back(adj_rm.value());
     }
-    rm->adjacent_rooms_ = std::move(adj_rms);
   }
+
   if(js.contains("room_items")){
-    std::map<string , glm::vec2> rm_itms;
     for(auto& itm : js["room_items"].items()){
       glm::vec2 coords(itm.value()["x"],itm.value()["y"]);
       rm_itms[itm.key()] = coords;
     }
-    rm->room_items_ = rm_itms;
   }
+  rm->SetBasicProperties(js["name"],js["img_fp"],rm_itms,adj_rms,js["visible"]);
+
   return rm;
 }
 TriggerMap JSONLoader::GenerateTriggerMap( Json &js) {

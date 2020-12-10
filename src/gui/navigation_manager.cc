@@ -28,9 +28,9 @@ void NavigationManager::draw() {
   ci::gl::color(ci::Color::black());
   for(auto it = room_objs_.begin(); it!=room_objs_.end();it++){
     ci::gl::drawStringCentered(it->first->name_,it->second.getCenter(),ci::Color::black());
-    ci::gl::drawStrokedRect(it->second);
+    ci::gl::drawStrokedRoundedRect(it->second,10);
   }
-
+  ci::gl::drawStrokedRect(bbox_);
 }
 
 void NavigationManager::update(const ScreenManager::Screen &cur_scr) {
@@ -51,9 +51,12 @@ void NavigationManager::update(const ScreenManager::Screen &cur_scr) {
     float box_height = (bbox_.getHeight()-title_offset_.y)/(float)visible_rm_count;
     if(box_height>30) box_height=30;
     glm::vec2 top_left = bbox_.getUpperLeft()+title_offset_;
+    top_left.y += 50;
+    int x_offset = 50;
+    top_left.x += x_offset;
     for(auto it = room_objs_.begin(); it!=room_objs_.end();it++){
-      it->second = ci::Rectf (top_left,top_left+glm::vec2(bbox_.getWidth(),box_height));
-      top_left.y += box_height;
+      it->second = ci::Rectf (top_left,top_left+glm::vec2(bbox_.getWidth()-(float)(x_offset*2),box_height));
+      top_left.y += box_height+20;
     }
   }
 }

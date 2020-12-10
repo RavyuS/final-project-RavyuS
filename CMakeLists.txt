@@ -61,6 +61,8 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 file(GLOB_RECURSE core_sources src/core/*.cc)
 
 file(GLOB_RECURSE gui_sources src/gui/*.cc)
+
+file(GLOB_RECURSE test_sources test/*.cc)
 #list(APPEND core_sources
 #        src/core/game_engine/game_engine.cc
 #        src/core/game_engine/game_state.cc
@@ -93,6 +95,14 @@ ci_make_app(
         INCLUDES include
         SOURCES apps/adventure.cc ${core_sources} ${gui_sources}
         LIBRARIES nlohmann_json::nlohmann_json
+)
+
+ci_make_app(
+        APP_NAME adventure-test
+        CINDER_PATH ${CINDER_PATH}
+        SOURCES ${test_sources} ${core_sources}
+        INCLUDES include
+        LIBRARIES catch2 nlohmann_json::nlohmann_json
 )
 if(MSVC)
     set_property(TARGET naive-bayes-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")

@@ -21,7 +21,9 @@ class Room {
    */
   Room(const string &id);
 
-
+  void SetBasicProperties(const string& name, const string& img_fp, std::map<string,
+                          glm::vec2>& room_items,std::vector<string> adjacent_rooms,
+                          bool visible);
   string name_, id_;
   /**
    * The room_items_ map contains the items that this room instance will contain at game start. The string key

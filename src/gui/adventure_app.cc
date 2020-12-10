@@ -12,6 +12,7 @@ AdventureApp::AdventureApp() {
   ge_ = new core::GameEngine(item_fp,room_fp);
   sm_ = new ScreenManager(screenBox,ge_->GetGameState());
   nm_ = new NavigationManager(navBox,ge_->GetGameState());
+  im_ = new InventoryManager(invBox, ge_->GetGameState());
   ci::app::setWindowSize(kWindowSize);
 }
 void AdventureApp::draw() {
@@ -21,6 +22,7 @@ void AdventureApp::draw() {
   ci::gl::color(1,1,1,1);
   sm_->draw();
   nm_->draw();
+  im_->draw();
 
 }
 
@@ -56,6 +58,7 @@ void AdventureApp::keyDown(ci::app::KeyEvent e) {
 void AdventureApp::cleanup() {
   delete sm_;
   delete nm_;
+  delete im_;
   delete ge_;
 
 }

@@ -74,7 +74,7 @@ void ScreenManager::draw_room() {
 }
 void ScreenManager::draw_item_menu() {
   ci::gl::color(ci::Color("black"));
-  ci::gl::drawStringCentered("Viewing "+focus_itm_->name_,screen_objects_["item"].getCenter(),ci::Color("black"),ci::Font("roboto", 30));
+  ci::gl::drawStringCentered("Viewing "+focus_itm_->name_,screen_objects_["item"].getCenter()+glm::vec2 (0,-5),ci::Color("black"),ci::Font("roboto", 30));
   ci::gl::drawStrokedRect(screen_objects_["item"]);
   for(auto it = screen_objects_.cbegin(); it != screen_objects_.cend(); it++) {
     if (it->first != "item") {
@@ -83,7 +83,7 @@ void ScreenManager::draw_item_menu() {
                                  ci::Color("black"),
                                  ci::Font("roboto", 15));
 //      ci::gl::color(ci::Color("black"));
-      ci::gl::drawStrokedRect(it->second);
+      ci::gl::drawStrokedRoundedRect(it->second,10);
     }
   }
 

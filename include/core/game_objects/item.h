@@ -68,7 +68,7 @@ public:
      * @param trigger_map Map of Trigger vectors.
      * @param hidden boolean flag that
      */
-    void SetBasicProperties(string name, string img_fp, TriggerMap trigger_map, bool hidden);
+    void SetBasicProperties(const string &name, const string &img_fp, TriggerMap &trigger_map, bool hidden);
 
     /**
      * Adds a trigger vector to Item's trigger map with the specified label as the index. If the label is already used,

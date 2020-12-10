@@ -7,6 +7,7 @@
 #include "core/game_engine/game_engine.h"
 #include "screen_manager.h"
 #include "navigation_manager.h"
+#include "inventory_manager.h"
 
 namespace adventure{
 namespace gui{
@@ -62,8 +63,7 @@ namespace gui{
    core::GameEngine* ge_;
    ScreenManager *sm_;
    NavigationManager *nm_;
-
-
+   InventoryManager *im_;
 
 
 };

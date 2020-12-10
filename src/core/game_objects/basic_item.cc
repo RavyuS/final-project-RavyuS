@@ -12,7 +12,7 @@ namespace core{
 BasicItem::BasicItem(const string &id) : Item(id){};
 
 Item::Item(const string &id):id_(id) {}
-void Item::SetBasicProperties(string name, string img_fp, TriggerMap trigger_map, bool hidden) {
+void Item::SetBasicProperties(const string &name, const string &img_fp, TriggerMap &trigger_map, bool hidden) {
   name_ = name;
   img_fp_ = img_fp;
   trigger_map_ = trigger_map;

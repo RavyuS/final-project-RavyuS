@@ -10,6 +10,7 @@ Item* ItemContainer::GetItemByID(const std::string &id) const {
   for(core::Item *itm : items_){
     if(itm->id_ == id) return itm;
   }
+  throw std::invalid_argument("Item does not exist");
 }
 std::vector<Item*> ItemContainer::GetItemByName(const std::string &name) const {
   std::vector<core::Item*> itms;

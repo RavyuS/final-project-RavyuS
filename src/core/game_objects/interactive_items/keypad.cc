@@ -9,18 +9,16 @@ namespace adventure::core{
     Keypad::Keypad(const string &id, int unlock_code) : Item(id) {
       interactive_ = true;
       unlock_code_ = unlock_code;
-      keypad_texture = ci::gl::Texture2d::create(ci::loadImage(ci::app::loadAsset("items/keypad.png")));
-
       input_ = "";
     }
     void Keypad::Draw(ci::Rectf &boundaries) {
       if(keys_.empty()) LoadKeys(boundaries);
-
+      keypad_texture = ci::gl::Texture2d::create(ci::loadImage(ci::app::loadAsset("items/keypad.png")));
       ci::gl::draw(keypad_texture,keypad_top_left_);
 
       glm::vec2 input_vec = glm::vec2 (keypad_top_left_.x,keypad_top_left_.y-100);
       ci::gl::drawString(input_,input_vec,ci::Color("black"),ci::Font("arial",25));
-
+      keypad_texture.reset();
     }
     actions::Action*  Keypad::UpdateOnClick(glm::vec2 &click_coords) {
 
@@ -68,7 +66,7 @@ Keypad::~Keypad() {
     it->second.clear();
   }
   trigger_map_.clear();
-  keypad_texture.reset();
+
   keys_.clear();
 }
 }

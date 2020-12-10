@@ -10,6 +10,7 @@ Room * RoomContainer::GetRoomByID(const std::string &id) const{
   for (core::Room *rm : rooms_){
     if(rm->id_ == id) return rm;
   }
+  throw std::invalid_argument("Room ID does not exist");
 }
 std::vector<Room *> RoomContainer::GetRoomByName(const std::string &name) const{
   std::vector<core::Room*> rooms;

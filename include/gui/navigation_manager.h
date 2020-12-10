@@ -54,7 +54,7 @@ class NavigationManager {
   core::Room *cur_rm_; // Pointer to the room the player is in
   std::map<core::Room* ,ci::Rectf> room_objs_; // Map of adjacent rooms and their menu box boundary coordinates.
   std::shared_ptr<const core::GameState> gs_; // Pointer to the internal GameState. Constant to prevent illegal access
-  glm::vec2 title_offset_ = glm::vec2 (0,120); // Position coordinates for the Menu title.
+  glm::vec2 title_offset_ = glm::vec2 (0,50); // Offset starting coordinates for elements to leave space for title.
 
   /**
    * Determines the size of individual room text boxes based on the number of room visible and adjacent to the current room
