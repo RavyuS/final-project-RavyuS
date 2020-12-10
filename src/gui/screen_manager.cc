@@ -157,6 +157,7 @@ core::actions::Action* ScreenManager::handle_item_action(const string &action) {
   else if(action == "unlock"){
     return new core::actions::Unlock(focus_itm_->id_);
   }
+  else return new core::actions::NoAction();
 }
 ScreenManager::~ScreenManager() {
   gs_.reset();
