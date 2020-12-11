@@ -24,13 +24,19 @@ core::actions::Action * NavigationManager::HandleMouseEvent(ci::app::MouseEvent 
 
 void NavigationManager::draw() {
   glm::vec2 title_vec (bbox_.getCenter().x,bbox_.getUpperLeft().y+title_offset_.y/2);
-  ci::gl::drawStringCentered("Go to:",title_vec,ci::Color("black"),ci::Font("roboto", 20));
-  ci::gl::color(ci::Color::black());
+  ci::gl::drawStringCentered("Go to:",title_vec,ci::Color("lightgray"),ci::Font("roboto", 35));
+
   for(auto it = room_objs_.begin(); it!=room_objs_.end();it++){
-    ci::gl::drawStringCentered(it->first->name_,it->second.getCenter(),ci::Color::black());
+//    ci::gl::color(ci::Color("darkgreen"));
+    ci::gl::color(ci::Color("darkred"));
+    ci::gl::drawSolidRoundedRect(it->second,10);
+    ci::gl::color(ci::Color("darkgoldenrod"));
     ci::gl::drawStrokedRoundedRect(it->second,10);
+    ci::gl::drawStringCentered(it->first->name_,it->second.getCenter()+glm::vec2 (0,-7),ci::Color("white"),ci::Font("roboto", 20));
+
   }
-  ci::gl::drawStrokedRect(bbox_);
+  ci::gl::color(ci::Color("gray"));
+  ci::gl::drawStrokedRoundedRect(bbox_,10);
 }
 
 void NavigationManager::update(const ScreenManager::Screen &cur_scr) {

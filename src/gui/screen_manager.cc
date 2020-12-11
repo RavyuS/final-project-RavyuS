@@ -22,7 +22,7 @@ void ScreenManager::draw() {
   else if(current_screen == ITEM_INTERACT){
     focus_itm_->Draw(bbox_);
   }
-  ci::gl::color(ci::Color("black"));
+  ci::gl::color(ci::Color("grey"));
   ci::gl::drawStrokedRect(bbox_);
 
 }
@@ -73,17 +73,28 @@ void ScreenManager::draw_room() {
 
 }
 void ScreenManager::draw_item_menu() {
-  ci::gl::color(ci::Color("black"));
-  ci::gl::drawStringCentered("Viewing "+focus_itm_->name_,screen_objects_["item"].getCenter()+glm::vec2 (0,-5),ci::Color("black"),ci::Font("roboto", 30));
-  ci::gl::drawStrokedRect(screen_objects_["item"]);
-  for(auto it = screen_objects_.cbegin(); it != screen_objects_.cend(); it++) {
-    if (it->first != "item") {
-      ci::gl::drawStringCentered(menu_string_map_[it->first],
-                                 it->second.getCenter(),
-                                 ci::Color("black"),
-                                 ci::Font("roboto", 15));
-//      ci::gl::color(ci::Color("black"));
-      ci::gl::drawStrokedRoundedRect(it->second,10);
+//  ci::gl::color(ci::Color("darkgreen"));
+//  ci::gl::drawSolidRect(screen_objects_["item"]);
+  ci::gl::drawStringCentered("Viewing "+focus_itm_->name_,screen_objects_["item"].getCenter(),ci::Color("lightgray"),ci::Font("roboto", 35));
+  if(screen_objects_.size() <=1){
+    ci::gl::drawStringCentered("Nothing to do. Press Esc to go back.",
+                               bbox_.getCenter(),
+                               ci::Color("white"),
+                               ci::Font("roboto", 30));
+  }
+  else{
+    for(auto it = screen_objects_.cbegin(); it != screen_objects_.cend(); it++) {
+      if (it->first != "item") {
+        ci::gl::color(ci::Color("darkblue"));
+        ci::gl::drawSolidRoundedRect(it->second,10);
+        ci::gl::color(ci::Color("darkgoldenrod"));
+        ci::gl::drawStrokedRoundedRect(it->second,10);
+        ci::gl::drawStringCentered(menu_string_map_[it->first],
+                                   it->second.getCenter()+glm::vec2(0,-10),
+                                   ci::Color("white"),
+                                   ci::Font("roboto", 20));
+
+      }
     }
   }
 

@@ -17,7 +17,7 @@ AdventureApp::AdventureApp() {
 }
 void AdventureApp::draw() {
 
-  ci::Color8u background_color(255, 246, 148); // light yellow
+  ci::Color8u background_color(0, 0, 0);
   ci::gl::clear(background_color);
   ci::gl::color(1,1,1,1);
   sm_->draw();

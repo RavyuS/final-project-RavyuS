@@ -14,13 +14,13 @@ InventoryManager::~InventoryManager() {
 
 void InventoryManager::draw() {
   glm::vec2 string_vec (bbox_.getCenter().x, bbox_.getUpperLeft().y+title_offset_.y/2);
-  ci::gl::drawStringCentered("Inventory:", string_vec, ci::Color("black"), ci::Font("roboto", 20));
+  ci::gl::drawStringCentered("Inventory:", string_vec, ci::Color("lightgray"), ci::Font("roboto", 35));
   string_vec.y += 50;
   for(core::Item *itm: gs_->player_inventory_){
-    ci::gl::drawStringCentered(itm->name_,string_vec,ci::Color("black"), ci::Font("roboto", 12));
-    string_vec.y +=20;
+    ci::gl::drawStringCentered(itm->name_,string_vec,ci::Color("grey"), ci::Font("roboto", 20));
+    string_vec.y +=30;
   }
-  ci::gl::color(ci::Color("black"));
+  ci::gl::color(ci::Color("grey"));
   ci::gl::drawStrokedRect(bbox_);
 }
 
