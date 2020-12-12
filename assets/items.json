@@ -1,0 +1,91 @@
+{
+  "cellar_key": {
+    "type": "item",
+    "name": "Cellar Key",
+    "img_fp": "cellar_key.png",
+    "visible": false,
+    "can_equip": true
+  },
+  "cellar_door": {
+    "type": "item",
+    "name": "Cellar Door",
+    "img_fp": "cellar_door_closed.png",
+    "visible": true,
+    "unlockable": true,
+    "unlock_item_id": "cellar_key",
+    "post_unlock_msg": "The Cellar Door opens, revealing a room inside.",
+    "triggers": {
+      "unlock": [
+        {
+          "type": "room_visibility",
+          "room_id": "cellar",
+          "visible": true
+        }
+      ]
+    }
+  },
+  "usb_key": {
+    "type": "item",
+    "name": "USB",
+    "img_fp": "usb_key.png",
+    "visible": true,
+    "can_equip": true,
+    "triggers": {
+      "equip": [
+        {
+          "type": "item_visibility",
+          "item_id": "note_usb",
+          "visible": true
+        }
+      ]
+    }
+  },
+  "note_usb": {
+    "type": "static_image",
+    "display_img_fp": "usb_instructions.png",
+    "name": "Note on USB",
+    "img_fp": "generic_note.png",
+    "visible": false
+  },
+  "note_cellar_vault": {
+    "type": "static_image",
+    "display_img_fp": "cellar_vault_code.png",
+    "name": "Mysterious Note",
+    "img_fp": "generic_note.png",
+    "visible": true
+  },
+  "cellar_vault": {
+    "type": "keypad",
+    "unlock_code": 4096,
+    "name": "Cellar Keypad",
+    "img_fp": "cellar_keypad.png",
+    "visible": true,
+    "triggers": {
+      "keypad_unlock": [
+        {
+          "type": "room_visibility",
+          "room_id": "end",
+          "visible": true
+        }
+      ]
+    }
+  },
+  "computer": {
+    "type": "item",
+    "name": "Computer",
+    "img_fp": "computer.png",
+    "visible": true,
+    "unlockable": true,
+    "unlock_item_id": "usb_key",
+    "post_unlock_msg": "Access granted. Opening compartment.",
+    "triggers": {
+      "unlock": [
+        {
+          "type": "item_visibility",
+          "item_id": "cellar_key",
+          "visible": true
+        }
+      ]
+    }
+  }
+}

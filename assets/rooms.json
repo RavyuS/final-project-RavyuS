@@ -1,0 +1,89 @@
+{
+  "cellar": {
+    "name": "Cellar",
+    "img_fp": "cellar.png",
+    "visible": false,
+    "room_items": {
+      "cellar_vault": {
+        "x": 674,
+        "y": 305
+      }
+    },
+    "adjacent_rooms": [
+      "basement",
+      "end"
+    ]
+  },
+  "basement": {
+    "name": "Basement",
+    "img_fp": "basement.png",
+    "visible": true,
+    "room_items": {
+      "cellar_door": {
+        "x": 679,
+        "y": 209
+      }
+    },
+    "adjacent_rooms": [
+      "cellar","living_room"
+
+    ]
+  },
+  "living_room": {
+    "name": "Living Room",
+    "img_fp": "living_room.png",
+    "visible": true,
+    "room_items": {
+      "note_cellar_vault" :{
+       "x": 495,
+       "y": 254
+      }
+    },
+"adjacent_rooms": [
+      "basement",
+      "bathroom",
+      "study"
+    ]
+  },
+  "bathroom": {
+    "name": "Bathroom",
+    "img_fp": "bathroom.png",
+    "visible": true,
+    "room_items": {
+      "usb_key": {
+        "x": 337,
+        "y": 428
+      },
+      "note_usb": {
+        "x": 381,
+        "y": 474
+      }
+    },
+    "adjacent_rooms": [
+      "living_room"
+    ]
+  },
+  "study": {
+    "name": "Study",
+    "img_fp": "study.png",
+    "visible": true,
+    "room_items": {
+      "computer": {
+        "x": 584,
+        "y": 318
+      },
+      "cellar_key": {
+        "x": 336,
+        "y": 141
+      }
+    },
+    "adjacent_rooms": [
+      "living_room"
+    ]
+  },
+  "end": {
+    "name": "Escape",
+    "img_fp": "escape.png",
+    "visible": false
+  }
+}
